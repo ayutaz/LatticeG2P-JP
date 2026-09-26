@@ -1,0 +1,14 @@
+# size-m と同じ構成で 10 epoch（開発初期の基本設定。6.97M params）
+scorer: bi_encoder
+hidden: 256
+ctx_layers: 4
+ctx_heads: 4
+ctx_ffn: 1024
+reading_layers: 2
+pair_layers: 2
+epochs: 10
+batch_size: 16
+lr: 3.0e-4
+margin_weight: 0.5
+save_every_steps: 200
+eval_every_steps: 200

@@ -1,0 +1,33 @@
+# 認証情報
+.env
+
+# 辞書・生成データ・学習成果物
+# ★辞書データはコミットしない。ライセンス（R-01）はクローズ済み（BSD 3-Clause）で、理由はサイズ（233 MB〜）
+#
+# ★先頭の / は必須。"data/" と書くと任意の階層の data ディレクトリに一致し、
+#   ソースパッケージ src/lattice_g2p/data/ まで丸ごと無視される
+#   （実際に data パッケージ 11 ファイルが未コミットになっていた）。
+/data/
+/checkpoints/
+/models/
+*.pt
+*.onnx
+*.jsonl
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ベンチマーク出力
+runs/
+logs/
+wandb/
+
+# OS
+.DS_Store

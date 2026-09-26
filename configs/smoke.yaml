@@ -1,0 +1,16 @@
+# Phase A スモーク用。★train データで train Accuracy を測り、過学習できるか見る
+scorer: bi_encoder
+hidden: 256
+ctx_layers: 4
+ctx_heads: 4
+ctx_ffn: 1024
+reading_layers: 2
+pair_layers: 2
+epochs: 40
+batch_size: 16
+lr: 5.0e-4
+margin_weight: 0.5
+dropout: 0.0
+save_every_steps: 500
+eval_every_steps: 500
+log_every_steps: 100

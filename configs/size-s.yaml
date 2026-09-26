@@ -1,0 +1,15 @@
+# accuracy-latency カーブ用（M5 Task 1）。★hidden / ctx_layers / ctx_ffn 以外は
+# configs/tiny.yaml と 1 文字も変えないこと。変えると曲線が意味を失う。
+scorer: bi_encoder
+hidden: 192
+ctx_layers: 4
+ctx_heads: 4
+ctx_ffn: 768
+reading_layers: 2
+pair_layers: 2
+epochs: 20
+batch_size: 16
+lr: 3.0e-4
+margin_weight: 0.5
+save_every_steps: 200
+eval_every_steps: 200

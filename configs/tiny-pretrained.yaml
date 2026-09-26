@@ -1,0 +1,19 @@
+# ★研究用の参照。配布する経路ではない（docs/pitfalls.md R-08）。
+# ku-nlp/deberta-v2-tiny-japanese-char-wwm は CC BY-SA 4.0（copyleft）で、
+# 寛容なライセンスでの配布と両立しない。「事前学習ありでどこまで出るか」を測るだけ。
+#
+# ★tiny.yaml と同条件で比較する。エンコーダ以外を変えないこと。
+context_encoder: pretrained
+pretrained_name: ku-nlp/deberta-v2-tiny-japanese-char-wwm
+scorer: bi_encoder
+hidden: 256          # 読みエンコーダ側。文脈側は事前学習モデルの 192 が使われる
+ctx_heads: 4
+ctx_ffn: 1024
+reading_layers: 2
+pair_layers: 2
+epochs: 10
+batch_size: 16
+lr: 3.0e-4
+margin_weight: 0.5
+save_every_steps: 200
+eval_every_steps: 200

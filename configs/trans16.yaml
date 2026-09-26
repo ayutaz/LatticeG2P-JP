@@ -1,0 +1,18 @@
+# M6: CRF の遷移項つき（埋め込み 16 次元）。
+# ★size-m.yaml と transition_dim 以外は 1 文字も変えないこと。
+#   変えると「遷移項の効果」が測れなくなる。
+scorer: bi_encoder
+hidden: 256
+ctx_layers: 4
+ctx_heads: 4
+ctx_ffn: 1024
+reading_layers: 2
+pair_layers: 2
+epochs: 20
+batch_size: 16
+lr: 3.0e-4
+margin_weight: 0.5
+save_every_steps: 200
+eval_every_steps: 200
+transition_dim: 16
+transition_ids: 16000

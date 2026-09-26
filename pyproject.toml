@@ -1,0 +1,47 @@
+[project]
+name = "lattice-g2p"
+version = "0.1.0"
+description = "Dictionary-constrained lattice G2P for Japanese"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = "==3.13.5"  # ★固定。ローカルの計測（テスト・ONNX・レイテンシ・M7）はすべてこの版
+dependencies = [
+    "anthropic>=1.6.0",
+    "marisa-trie>=1.2",
+    "numpy>=2.4.6",
+    "python-dotenv>=1.2.3",
+    "pyyaml>=6.0",
+    "torch>=2.4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+hf = [
+    "transformers>=4.40",
+]
+onnx = [
+    "onnx>=1.17",
+    "onnxruntime>=1.19",
+    "onnxscript>=0.1",
+]
+bench = [
+    "pyopenjtalk>=0.4.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lattice_g2p"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
