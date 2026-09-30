@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-test:
+    name: ruff + pytest (CPU)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+
+      # Python は .python-version / requires-python の 3.13.5 を uv が入れる。
+      # ★--extra dev だけだと onnxruntime / pyopenjtalk のテストが黙ってスキップされるので --all-extras。
+      # テストは辞書・benchmark（data/, gitignore）を使わず CPU だけで動く。
+      - name: Install dependencies
+        run: uv sync --locked --all-extras
+
+      - name: Lint (ruff)
+        run: uv run ruff check .
+
+      - name: Test (pytest)
+        run: uv run pytest
+
+      - name: Test Claude Code hook (guard.py)
+        run: python3 .claude/hooks/test_guard.py
