@@ -288,6 +288,8 @@ uv run ruff check .                    # lint
 python3 .claude/hooks/test_guard.py    # Claude Code の hook の判定テスト
 ```
 
+CI（`.github/workflows/ci.yml`）は push / PR で `uv sync --locked --all-extras` の後に上の 3 つを実行する（CPU のみ・辞書と benchmark は不要）。
+
 - Python の実行は `uv run` を通す（素の `python` / `pip` を使わない）
 - 数値の差を報告するときは、学習を伴う比較なら seed を変えて反復する（同じ条件でも実行ごとに約 0.3 pt ずれる。[R-24](docs/pitfalls.md#r-24)）
 - CPU レイテンシはローカルで測る（クラウドのインスタンスでは再現性が無い。[R-13](docs/pitfalls.md#r-13)）
